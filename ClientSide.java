@@ -31,7 +31,8 @@ public class ClientSide {
     if(returned.equals(fileName)){
         long size = serverReply.readLong();
         byte[] buffer = new byte[1024];
-        OutputStream output = new FileOutputStream(returned);
+        File requestedFilePath = "C:/Users/Garrett/Documents/GitHub/COSC331Proj2/clientFileRepository/" + returned;
+        OutputStream output = new FileOutputStream(requestedFilePath);
         while (size>0 && (bytesRead=serverReply.read(buffer, 0, (int)Math.min(buffer.length, size)))!=-1){
           output.write(buffer, 0, bytesRead);
           size-=bytesRead;
