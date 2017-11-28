@@ -45,9 +45,11 @@ public class ClientSide {
         //Receives the size of the file from the server
         long size = serverReply.readLong();
         byte[] buffer = new byte[1024];
-        //Establishes the filepath so all the saved files are in one place
-        File requestedFilePath = new File("C:/Users/Garrett/Documents/GitHub/COSC331Proj2/clientFileRepository/" + returned);
-        OutputStream output = new FileOutputStream(requestedFilePath);
+        /*Establishes the filepath so all the saved files are in one place
+        Removed so the program will work on any clients computer without the exact filePath
+        Will re-add in future version with relative file pathing to accomplish the original intent
+        File requestedFilePath = new File("C:/Users/Garrett/Documents/GitHub/COSC331Proj2/clientFileRepository/" + returned);*/
+        OutputStream output = new FileOutputStream(returned);
         //Loops through and writes the file contents byte by byte to the filepath established earlier
         while (size>0 && (bytesRead=serverReply.read(buffer, 0, (int)Math.min(buffer.length, size)))!=-1){
           output.write(buffer, 0, bytesRead);
